@@ -1,0 +1,20 @@
+{
+  "name": "bot-copa-2026",
+  "version": "0.1.0",
+  "description": "Bot de Discord para colecao de jogadores da Copa do Mundo 2026.",
+  "main": "api/interactions.js",
+  "scripts": {
+    "start": "node src/dev-server.js",
+    "deploy:commands": "node src/deploy-commands.js",
+    "check": "node --check api/interactions.js && node --check api/health.js && node --check src/app.js && node --check src/dev-server.js && node --check src/deploy-commands.js && node --check src/commands.js && node --check src/discord-ui.js && node --check src/game/album-service.js && node --check src/storage/index.js && node --check src/storage/json-store.js && node --check src/storage/firestore-store.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "discord.js": "^14.21.0",
+    "dotenv": "^16.6.1",
+    "firebase-admin": "^13.6.0",
+    "tweetnacl": "^1.0.3"
+  }
+}
