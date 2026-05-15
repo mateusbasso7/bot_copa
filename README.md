@@ -65,12 +65,19 @@ O servidor local sobe em `http://localhost:3000`.
 
 1. Crie um projeto na Vercel e conecte este repositorio.
 2. Configure as env vars:
-   - `DISCORD_TOKEN`
-   - `DISCORD_CLIENT_ID`
-   - `DISCORD_GUILD_ID`
-   - `DISCORD_PUBLIC_KEY`
+   - `DISCORD_TOKEN=<seu_token_do_bot>`
+   - `DISCORD_CLIENT_ID=<application_id>`
+   - `DISCORD_GUILD_ID=<guild_id_de_teste>`
+   - `DISCORD_PUBLIC_KEY=<public_key_do_discord>`
    - `STORAGE_DRIVER=firestore`
-   - `FIREBASE_SERVICE_ACCOUNT_JSON`
+   - `FIREBASE_SERVICE_ACCOUNT_JSON=<json_da_service_account_em_uma_linha>`
+
+Exemplo de `FIREBASE_SERVICE_ACCOUNT_JSON`:
+
+```json
+{"type":"service_account","project_id":"seu-projeto","private_key_id":"<private_key_id>","private_key":"<private_key_pem_com_\\\\n_escapado>","client_email":"bot@seu-projeto.iam.gserviceaccount.com","client_id":"<client_id>","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_x509_cert_url":"https://www.googleapis.com/robot/v1/metadata/x509/bot%40seu-projeto.iam.gserviceaccount.com","universe_domain":"googleapis.com"}
+```
+
 3. Faça o deploy.
 4. Copie a URL publicada da rota:
 

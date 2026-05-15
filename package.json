@@ -9,7 +9,7 @@
     "check": "node --check api/interactions.js && node --check api/health.js && node --check src/app.js && node --check src/dev-server.js && node --check src/deploy-commands.js && node --check src/commands.js && node --check src/discord-ui.js && node --check src/game/album-service.js && node --check src/storage/index.js && node --check src/storage/json-store.js && node --check src/storage/firestore-store.js"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": "22.x"
   },
   "dependencies": {
     "discord.js": "^14.21.0",
