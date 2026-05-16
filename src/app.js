@@ -22,21 +22,28 @@ const store = createStore();
 const albumService = new AlbumService(store);
 
 async function handleDiscordRequest(req, res) {
-  const rawBody = await readRawBody(req);
+  try {
+    const rawBody = await readRawBody(req);
 
-  if (!verifyDiscordRequest(req, rawBody)) {
-    res.statusCode = 401;
+    if (!verifyDiscordRequest(req, rawBody)) {
+      res.statusCode = 401;
+      res.setHeader("content-type", "application/json");
+      res.end(JSON.stringify({ error: "invalid request signature" }));
+      return;
+    }
+
+    const interaction = JSON.parse(rawBody || "{}");
+    const response = await handleInteraction(interaction);
+
+    res.statusCode = 200;
     res.setHeader("content-type", "application/json");
-    res.end(JSON.stringify({ error: "invalid request signature" }));
-    return;
+    res.end(JSON.stringify(response));
+  } catch (error) {
+    console.error("Discord interaction failed:", error);
+    res.statusCode = 200;
+    res.setHeader("content-type", "application/json");
+    res.end(JSON.stringify(messageResponse("Falha ao processar o comando.", true)));
   }
-
-  const interaction = JSON.parse(rawBody || "{}");
-  const response = await handleInteraction(interaction);
-
-  res.statusCode = 200;
-  res.setHeader("content-type", "application/json");
-  res.end(JSON.stringify(response));
 }
 
 async function handleInteraction(interaction) {
